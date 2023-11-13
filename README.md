@@ -8,11 +8,13 @@ berikut adalah link video aplikasi yang di jalankan (dijalankan pada device meng
 <br>
 Source Code:  
 * activity_main.Xml (dibuat dengan design pada android studio):
-
-  <?xml version="1.0" encoding="utf-8"?>
+```
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <Button
         android:id="@+id/buttonToast"
@@ -25,9 +27,14 @@ Source Code:
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="682dp"
         android:layout_below="@id/buttonToast"
-        android:background="#eeeeee"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="3dp"
+        android:background="#FFEB3B"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -59,41 +66,48 @@ Source Code:
             android:layout_marginBottom="-70dp"
             android:text="0"
             android:textAlignment="center"
-            android:textColor="#FF000000"
+            android:textColor="#0000ff"
             android:textSize="180sp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/buttonCount"
-        android:layout_width="match_parent"
+        android:layout_width="132dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="4dp"
         android:text="HITUNG"
         android:textAlignment="center"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/buttonReset"
-        android:layout_width="match_parent"
+        android:layout_width="142dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonCount"
-        android:layout_marginStart="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="6dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="87dp"
+        android:layout_marginBottom="3dp"
         android:text="RESET"
+        android:backgroundTint="@color/merah"
         android:textStyle="bold" />
 
 </RelativeLayout>
+```
+* MainActivity.java
 
-* MainActivity.Java :
- ```java
+ ```
 package com.example.app1;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.support.v4.app.RemoteActionCompatParcelizer;
 import android.os.Bundle;
 import android.view.View;
@@ -161,10 +175,14 @@ public class MainActivity extends AppCompatActivity {
         countFibo = calculateFibo(count);
         showCount.setText("Tombol Hitung diklik sebanyak : " + Integer.toString(count));
         showCountFibo.setText(Integer.toString(countFibo));
-        if (count % 7 == 0) {
+        if (count % 2 == 0) {
             if (toastA != null) toastA.cancel();
             toastA = Toast.makeText(getApplicationContext(), "Tombol hitung diklik : " + count + " Kali", Toast.LENGTH_SHORT);
             toastA.show();
+            showCountFibo.setTextColor(Color.RED);
+        }
+        else {
+            showCountFibo.setTextColor(Color.BLUE);
         }
     }
 
@@ -189,9 +207,9 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-
-* Androidmanifeast.xml
-``` java
+```
+* AndroidManifeast.xml
+```
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -218,19 +236,20 @@ public class MainActivity extends AppCompatActivity {
     </application>
 
 </manifest>
-
 ```
-* colors.xml
-
-```java
-
-</resources><?xml version="1.0" encoding="utf-8"?>
+* color.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-<color name="black">#FF000000</color>
-<color name="white">#FFFFFFFF</color>
-<color name="biru">#0000ff</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="biru">#0000ff</color>
 
-<color name="colorPrimary">#3F51B5</color>
-<color name="colorPrimaryDark">#303F9F</color>
-<color name="colorAccent">#FF4081</color>
-<color name="kuning">#FFFF00</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="kuning">#FFFF00</color>
+    <color name="hijau">#00ff00</color>
+    <color name="merah">#ff0006</color>
+
+</resources>
